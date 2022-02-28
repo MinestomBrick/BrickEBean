@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id('io.ebean') version '12.14.1'
+}
+
+dependencies {
+    compileOnly 'com.github.Minestom:Minestom:-SNAPSHOT'
+    compileOnly 'io.ebean:ebean:12.14.1'
+    compileOnly 'io.ebean:ebean-ddl-generator:12.14.1'
+    compileOnly 'io.ebean:ebean-querybean:12.14.1'
+
+    // TEST
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'com.github.Minestom:Minestom:-SNAPSHOT'
+
+    testImplementation 'io.ebean:ebean:12.14.0'
+    testImplementation 'io.ebean:ebean-ddl-generator:12.14.0'
+    testImplementation 'io.ebean:ebean-querybean:12.14.0'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testRuntimeOnly 'com.h2database:h2:2.1.210'
+    testRuntimeOnly 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Jorisg"
+            url = uri("https://repo.jorisg.com/snapshots")
+            credentials(org.gradle.api.credentials.PasswordCredentials)
+        }
+    }
+
+    publications {
+        release(MavenPublication) {
+            from components.java
+            groupId = rootProject.group
+            artifactId = project.name
+            version = rootProject.version
+        }
+    }
+}

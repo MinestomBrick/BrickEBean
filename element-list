@@ -1,0 +1,4 @@
+org.minestombrick.ebean
+org.minestombrick.ebean.context
+org.minestombrick.ebean.converters
+org.minestombrick.ebean.migration

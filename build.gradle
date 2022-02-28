@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.minestombrick.i18n'
+group 'org.minestombrick.ebean'
 version '1.0-SNAPSHOT'
 
 compileJava {
